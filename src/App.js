@@ -1,72 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import react from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
-import codeImage from './assets/codeImage.jpg'
+
+import react from './logo.svg';
 import javaScript from './assets/javaScript.png'
 import HTML5 from './assets/HTML5.png'
 import CSS3 from './assets/CSS3.png'
 import firebase from './assets/firebase.png'
 import illustrator from './assets/illustrator.png'
 import photoshop from './assets/photoshop.png'
-import link from './assets/link.png'
 import git from './assets/git.png'
+
+import codeImage from './assets/codeImage.jpg'
+import link from './assets/link.png'
+import download from './assets/download.png'
 import gitHub from './assets/gitHub.png'
 import twitter from './assets/twitter.png'
 import linkedin from './assets/linkedin.png'
-import download from './assets/download.png'
 
 function App() {
 
-    const [windowDimenion, detectHW] = useState({
-      winWidth: window.innerWidth,
-      winHeight: window.innerHeight,
-    })
-  
-    const detectSize = () => {
-      detectHW({
-        winWidth: window.innerWidth,
-        winHeight: window.innerHeight,
-      })
-    }
-  
-    useEffect(() => {
-      window.addEventListener('resize', detectSize)
+  const skills = [
+    {source: javaScript, name: 'Javascript'},
+    {source: HTML5, name: 'Html5'},
+    {source: CSS3, name: 'Css3'},
+    {source: git, name: 'Git'},
+    {source: react, name: 'React'},
+    {source: firebase, name: 'Firebase'},
+    {source: illustrator, name: 'Illustrator'},
+    {source: photoshop, name: 'Photoshop'}
+  ];
 
-      return () => {
-        window.removeEventListener('resize', detectSize)
-      }
-    }, [windowDimenion])
+  const Proyects = [
+    {image: codeImage, name: 'Hooters administrative panel', type: 'Web App', technologies: 'React - Firebase', Web: '//', repository: '//'},
+    {image: codeImage, name: 'Hooters', type: 'Android App', technologies: 'React Native - Firebase', Web: '/', repository: '//'},
+    {image: codeImage, name: 'CFE administrative panel', type: 'Web App', technologies: 'React - Firebase', Web: '//', repository: '/'},
+    {image: codeImage, name: 'CFE Seguridad', type: 'Android App', technologies: 'React Native', Web: '//', repository: '//'},
+    {image: codeImage, name: 'Chronos', type: 'Android App', technologies: 'React Native - Firebase', Web: 'https://play.google.com/store/apps/details?id=com.chronos.android', repository: '/'},
+    {image: codeImage, name: 'Categorias Gramaticales', type: 'Web App', technologies: 'React', Web: '/', repository: '/'},
+  ]
 
-    const skills = [
-      {source: javaScript, name: 'Javascript'},
-      {source: HTML5, name: 'Html5'},
-      {source: CSS3, name: 'Css3'},
-      {source: git, name: 'Git'},
-      {source: react, name: 'React'},
-      {source: firebase, name: 'Firebase'},
-      {source: illustrator, name: 'Illustrator'},
-      {source: photoshop, name: 'Photoshop'}
-    ];
+  const [formValues, setFormValues] = useState({
+    email: '',
+    subject: '',
+    message: ''
+  })
 
-    const Proyects = [
-      {image: codeImage, name: 'Hooters', type: 'Android App', technologies: 'React Native', Web: '..', repository: '//'},
-      {image: codeImage, name: 'CFE', type: 'Android App', technologies: 'React Native', Web: '..', repository: '//'},
-      {image: codeImage, name: 'Tomin', type: 'Web', technologies: 'React Native', Web: '..', repository: '//'},
-    ]
+  const UpdateFormValues = (data) => {
+    const {name, value} = data.target
+    setFormValues({...formValues, [name]: value})
+  }
+
+  const SendEmail = (data) => {
+    data.preventDefault()
+    console.log(formValues)
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <div style={{
-          display: 'flex',
-          position: 'absolute',
-          top: 0,
-          width: '100%',
-          height: windowDimenion.winHeight,
-          opacity: 0.25,
-          backgroundColor: '#000'
-        }}></div>
-        <img style={{width: '100%', height: windowDimenion.winHeight}} src={codeImage} alt={'Code'}/>
+    <div style={{textAlign: 'center'}}>
+      <header className="column">
+        <div className="A"/>
+        <img className="B" src={codeImage} alt={'Header Image of example code'}/>
         <div style={{
           display: 'flex',
           justifyContent: 'flex-end',
@@ -76,149 +69,86 @@ function App() {
           height: 60,
           backgroundColor: '#383838'
         }}>
-          <nav style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: 300,
-            marginRight: '10%'
-          }}>
-            <a href="#Skills"><h4 style={{fontSize: 18, color: '#fff'}}>Skills</h4></a>
-            <a href="#Portfolio"><h4 style={{fontSize: 18, color: '#fff'}}>Portfolio</h4></a>
-            <a href="#Contact"><h4 style={{fontSize: 18, color: '#fff'}}>Contact</h4></a>
+          <nav>
+            <a href="#Skills"><h3>Skills</h3></a>
+            <a href="#Portfolio"><h3>Portfolio</h3></a>
+            <a href="#Contact"><h3>Contact</h3></a>
           </nav>
         </div>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          position: 'absolute',
-          top: windowDimenion.winHeight / 2 - 75,
-          width: 430,
-          height: 150,
-          borderRadius: 5,
-          opacity: 0.3,
-          backgroundColor: '#696969'
-        }}>
+        <div className="column" className="Title-container" style={{opacity: 0.3, backgroundColor: '#696969'}}/>
+        <div className="column" className="Title-container">
+          <h1>Mayevi Vásquez</h1>
+          <h2>Frontend Developer</h2>
         </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'absolute',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 35,
-          top: windowDimenion.winHeight / 2 - 30
-        }}>
-          <h1 style={{fontWeight: 'lighter', fontSize: 40, height: 18}}>Mayevi Vásquez</h1>
-          <h2 style={{fontWeight: 'medium', fontSize: 24, letterSpacing: 2.5, height: 15}}>Frontend Developer</h2>
+        <div className="CV">
+          <img src={download} alt={'Download CV'}/>
+          <p>Download CV</p>
         </div>
       </header>
-      <main style={{display: 'flex', flexDirection: 'column', justifyContent: 'flex-start'}}>
+      <main>
         <section id="Skills">
-          <h4 style={{fontWeight: 'bold', fontSize: 30, color: '#383838', marginTop: 50, marginBottom: 60}}>Skills</h4>
+          <h3>Skills</h3>
           <div style={{
             display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginLeft: '10%',
-            marginRight: '10%',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: 60,
+            flexBasis: 100,
             marginBottom: 50,
-            marginTop: 0
+            marginTop: 60
           }}>
             {skills.map((skill) => (
-              <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', height: 120}}>
+              <div className="column" className="Skill">
                 <img
-                  style={{height: 100}}
                   className={skill.name == 'React' ? 'App-logo' : ''}
                   src={skill.source}
                   alt={skill.name}
                   key={skill.source}
                 />
-                <h5 style={{fontSize: 18, marginTop: 5}}>{skill.name}</h5>
+                <p>{skill.name}</p>
               </div>
             ))}
           </div>
         </section>
-        <section id="Portfolio" style={{width: '100%', backgroundColor: '#383838', flexDirection: 'column', alignItems: 'space-between'}}>
-          <h4 style={{fontWeight: 'bold', fontSize: 30, color: '#fff'}}>Portfolio</h4>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginLeft: '10%',
-            marginRight: '10%',
-            marginBottom: 50,
-          }}>
+        <section id="Portfolio">
+          <h3 style={{color: '#fff'}}>Portfolio</h3>
+          <div style={{display: 'flex', flexWrap: 'wrap', flexGrow: 2, alignItems: 'center', justifyContent: 'center', gap: 15}}>
             {Proyects.map((proyecto) => (
-              <article style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                width: 330,
-                backgroundColor: '#F6F6F6',
-                borderRadius: 15,
-              }}>
+              <article>
                 <img
                   style={{height: 180, width: '100%', borderTopRightRadius: 15, borderTopLeftRadius: 15}}
                   src={proyecto.image} alt={proyecto.name}
                   key={proyecto.name}
                 />
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 25}}>
-                  <p style={{fontSize: 18, marginBottom: 4, fontWeight: 'bold', marginTop: 0}}>{proyecto.name}</p>
-                  <p style={{fontSize: 14, marginBottom: 4, marginTop: 0}}>{proyecto.type}</p>
-                  <p style={{fontSize: 14, marginBottom: 4, marginTop: 0}}>{proyecto.technologies}</p>
-                  <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '100%'}}>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                      <img style={{height: 23, width: 23, marginRight: 5}} src={link} alt={'Link to proyect'}/>
-                      <p style={{fontSize: 14}}>Proyect</p>
-                    </div>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                      <img style={{height: 23, width: 23, marginRight: 5}} src={gitHub} alt={'Link to GitHub repository'}/>
-                      <p style={{fontSize: 14}}>Repository</p>
-                    </div>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingInline: 25, paddingTop: 20}}>
+                  <h4>{proyecto.name}</h4>
+                  <p style={{color: '#AAA'}}>{proyecto.type}</p>
+                  <p>{proyecto.technologies}</p>
+                  <div style={{display: 'flex', justifyContent: 'space-around', width: '100%', marginTop: 16}}>
+                    <a href={proyecto.Web} style={{opacity: proyecto.Web == '/' ? 0.5 : 1}}>
+                      <div className="Link-div">
+                        <img src={link} alt={'Link to proyect'}/>
+                        <p>Proyect</p>
+                      </div>
+                    </a>
+                    <a href={proyecto.repository} style={{opacity: proyecto.repository == '/' ? 0 : 1}}>
+                      <div className="Link-div">
+                        <img src={gitHub} alt={'Link to GitHub repository'}/>
+                        <p>Repository</p>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </article>
             ))}
           </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 220,
-            height: 45,
-            marginBottom: 50,
-            borderRadius: 5,
-            backgroundColor: '#8E9775',
-            marginLeft: '10%'
-          }}>
-            <img style={{height: 22, width: 22, marginRight: 8}} src={download} alt={'Download CV'}/>
-            <p style={{fontSize: 16, color: '#fff', fontWeight: 'bold'}}>Download CV</p>
-          </div>
         </section>
-        <section id="Contact" style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
-          <h4 style={{fontWeight: 'bold', fontSize: 30, color: '#383838'}}>Contact</h4>
-          <form action="" style={{display: 'flex', flexDirection: 'column', alignSelf: 'center'}}>
-            <label for="Email">
-              <input className="App-input" id="Email" type="email" name="Email" autoComplete="email" placeholder={'Email'} required></input>
-            </label>
-            <label for="Sujeto">
-              <input className={"App-input"} id="Sujeto" type="text" name="Subject" placeholder={'Subject'} required></input>
-            </label>
-            <label for="Message">
-              <input
-                style={{height: 70, borderWidth: 4, borderColor: '#8E9775', borderRadius: 8, paddingLeft: 10, width: 350}}
-                id="Message"
-                type="text"
-                name="Message"
-                placeholder={'Message'}
-                required>
-              </input>
-            </label>
+        <section id="Contact" className="column">
+          <h3>Contact</h3>
+          <form action="" className="column" onSubmit={(data) => SendEmail(data)}>
+            <input type="email" autoComplete="email" name="email" placeholder={'Email'} required onChange={(a) => UpdateFormValues(a)}/>
+            <input type="text" name="subject" placeholder={'Subject'} required onChange={(a) => UpdateFormValues(a)}/>
+            <input style={{height: 80}} type="text" name="message" placeholder={'Message'} required onChange={(a) => UpdateFormValues(a)}/>
             <input
               type="submit"
               value="Send Message"
@@ -234,37 +164,22 @@ function App() {
               }}>
             </input>
           </form>
-          <div style={{display: 'flex', flexDirection: 'row', alignSelf: 'center', justifyContent: 'space-between', width: 140}}>
-            <a className="App-link" href="https://github.com/mayevi" target="_blank" rel="noopener noreferrer">
+          <div style={{display: 'flex', alignSelf: 'center', justifyContent: 'space-between', width: 140}}>
+            <a href="https://github.com/mayevi" rel="noopener noreferrer" className="link-social">
               <img style={{height: 25, width: 25}} src={gitHub} alt={'GitHub'}/>
             </a>
-            <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            <a href="https://reactjs.org" rel="noopener noreferrer" className="link-social">
               <img style={{height: 25, width: 25}} src={twitter} alt={'Twitter'}/>
             </a>
-            <a
-              className="App-link"
-              href="https://www.linkedin.com/in/mayevi-vasquez-a9632518a/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://www.linkedin.com/in/mayevi-vasquez-a9632518a/" rel="noopener noreferrer" className="link-social">
               <img style={{height: 25, width: 25}} src={linkedin} alt={'Linkedin'}/>
             </a>
           </div>
-          <p style={{fontSize: 16, alignSelf: 'center', marginTop: 25, marginBottom: 60}}>mayevivasquez@udetijuana.edu.mx</p>
+          <p style={{marginTop: 25}}>mayevivasquez@udetijuana.edu.mx</p>
         </section>
       </main>
       <footer>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          width: '100%',
-          height: 80,
-          marginBottom: 0,
-          backgroundColor: '#CBD9A7'
-        }}>
-          <p style={{fontSize: 16, marginLeft: '10%'}}>Developed and designed by Mayevi Vasquez. ©2022. All rights reserved.</p>
-        </div>
+        <p>Developed and designed by Mayevi Vasquez. ©2022. All rights reserved.</p>
       </footer>
     </div>
   );
